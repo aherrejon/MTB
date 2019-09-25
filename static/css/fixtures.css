@@ -1,0 +1,28 @@
+.table { background-color: transparent; }
+.odd{ background-color: transparent !important; }
+.even{ background-color: transparent !important; }
+.panel-body { background-color: rgba(255, 255, 255, 0.8); }
+.navbar { background-color: rgba(255, 255, 255, 0.8); }
+.panel-default { background-color: transparent; }
+.row-fix { background-color: transparent; }
+#page-wrapper { background-color: transparent;
+border: 0; }/*No afecta*/
+.sidebar { 
+	background-color: transparent !important;
+	border: 0; }
+.page-header { background-color: rgba(255, 255, 255, 0.8);
+border-radius: 5px;
+padding: 5px }
+a {
+  background-color: rgba(255, 255, 255, 0.6);
+  color: #0D6EFF;
+  font-style: normal;
+  font-weight: bold;
+  font-variant: normal;
+  text-decoration: blink;
+  border: 0;
+  border-radius:5px 
+}
+.navbar-brand { 
+  background-color: transparent; }
+li {border-radius:5px !important;}
