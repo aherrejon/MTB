@@ -1,0 +1,279 @@
+{% load staticfiles %}
+<link href="{% static 'admin/css/form.css' %}" rel="stylesheet">
+<link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+<link href="{% static 'admin/css/override.css' %}" rel="stylesheet">
+<link href="{% static 'admin/css/wirdgets.css' %}" rel="stylesheet">
+
+
+<form class="form-horizontal" enctype="multipart/form-data" action="" method="post" id="cyclist_form" novalidate=""><input type="hidden" name="csrfmiddlewaretoken" value="qT4AH6eGfuDYjIOmMXwyL5ce2uYkHWgW">
+    <!--div class="alert alert-warning">Campos con <strong>*</strong> son requeridos.</div-->
+    <div class="alert alert-info" style="text-align: center;">Registro <strong> 6to Reto "Los Miradores"</strong> - Pedalitos Team.</div>
+
+    
+
+    <div id="content-main">
+        <div>
+        
+
+        
+        
+          
+<fieldset class="_module _aligned" id="fieldset-1" style="background:transparent">
+    
+    <div class="fields ">
+            <div class="row"><div class="control-group  field-firstname">                
+                    <div class="col-md-12 form-group ">
+                        <div class="control-label col-md-3">
+                            <label class="required" for="id_firstname">Nombre*:</label>
+                        </div>                        
+                        <div class="controls col-md-9">                            
+                                <input class="form-control vTextField" id="id_firstname" maxlength="50" name="firstname" placeholder="Nombre" required="required" title="" type="text">
+                        </div>                        
+                    </div>                
+            </div></div>
+        
+            <div class="row"><div class="control-group  field-lastname">            
+                    <div class="col-md-12 form-group ">
+                        <div class="control-label col-md-3">
+                            <label class="required" for="id_lastname">Apellido Paterno*:</label>
+                        </div>                        
+                        <div class="controls col-md-9">                            
+                                <input class="form-control vTextField" id="id_lastname" maxlength="50" name="lastname" placeholder="Apellido1" required="required" title="" type="text">
+                        </div>                        
+                    </div>                
+            </div></div>
+        
+            <div class="row"><div class="control-group  field-secondlastname">
+                    <div class="col-md-12 form-group ">
+                        <div class="control-label col-md-3">
+                            <label for="id_secondlastname" style="color:#999;">Apellido Materno:</label>
+                        </div>
+                        <div class="controls col-md-9">
+                                <input class="form-control vTextField" id="id_secondlastname" maxlength="50" name="secondlastname" placeholder="Apellido2" title="" type="text">
+                        </div>                        
+                    </div>                
+            </div></div>
+        
+            <div class="row"><div class="control-group  field-email">
+                    <div class="col-md-12 form-group ">
+                        <div class="control-label col-md-3">
+                            <label class="required" for="id_email">Email*:</label>
+                        </div>
+                        <div class="controls col-md-9">
+                                <input class="form-control vTextField" id="id_email" maxlength="254" name="email" placeholder="Email" required="required" title="" type="email">
+                        </div>                        
+                    </div>                
+            </div></div>
+        
+            <div class="row"><div class="control-group  field-age">
+                    <div class="col-md-12 form-group ">
+                        <div class="control-label col-md-3">
+                            <label for="id_age" style="color:#999;">Edad:</label>
+                        </div>
+                        <div class="controls col-md-9">
+                                <input class="form-control vIntegerField" id="id_age" name="age" placeholder="Edad" title="" type="text">
+                        </div>
+                    </div>
+            </div></div>
+        
+            <div class="row"><div class="control-group  field-phone">
+                    <div class="col-md-12 form-group ">
+                        <div class="control-label col-md-3">
+                            <label for="id_phone" style="color:#999;">Telefono:</label>
+                        </div>                        
+                        <div class="controls col-md-9">
+                                <input class="form-control vTextField" id="id_phone" maxlength="50" name="phone" placeholder="Telefono" title="" type="text">
+                        </div>
+                    </div>
+            </div></div>
+        
+            <div class="row"><div class="control-group  field-category">
+                    <div class="col-md-12 form-group ">
+                        <div class="control-label col-md-3">
+                            <label for="id_category" style="color:#999;">Clasificación:</label>
+                        </div>
+                        <div class="controls col-md-9">
+                                <select class="form-control" id="id_category" name="category" title="">
+                                    <option value="">---------</option>
+                                    <option value="P" selected="selected">Principiante</option>
+                                    <option value="I">Intermedia</option>
+                                    <option value="A">Avanzada</option>
+                                </select>
+                        </div>
+                    </div>
+            </div></div>
+        
+            <div class="row"><div class="control-group  field-nickname">
+                
+                    <div class="col-md-12 form-group ">
+                        <div class="control-label col-md-3">
+                            <label for="id_nickname" style="color:#999;">Apodo:</label>
+                        </div>
+                        
+                        <div class="controls col-md-9">
+                            
+                                <input class="form-control vTextField" id="id_nickname" maxlength="50" name="nickname" placeholder="Apodo" title="" type="text">
+                            
+                            
+                            
+                        </div>
+                        
+                    </div>
+                
+            </div></div>
+        
+            <div class="row"><div class="control-group  field-club">
+                    <div class="col-md-12 form-group ">
+                        <div class="control-label col-md-3">
+                            <label for="id_club" style="color:#999;">Club:</label>
+                        </div>
+                        <div class="controls col-md-9">
+                                <input class="form-control vTextField" id="id_club" maxlength="50" name="club" placeholder="Club" title="" type="text">
+                        </div>
+                    </div>
+            </div></div>
+        
+            <div class="row"><div class="control-group  field-emergency_phone">
+                    <div class="col-md-12 form-group ">
+                        <div class="control-label col-md-3">
+                            <label for="id_emergency_phone" style="color:#999;">Teléfono Emergencia:</label>
+                        </div>
+                        <div class="controls col-md-9">
+                                <input class="form-control vTextField" id="id_emergency_phone" maxlength="50" name="emergency_phone" placeholder="Telefono Emergencia" title="" type="text">
+                        </div>
+                    </div>
+            </div></div>
+        
+            <div class="row"><div class="control-group  field-contact_name">
+                    <div class="col-md-12 form-group ">
+                        <div class="control-label col-md-3">
+                            <label for="id_contact_name" style="color:#999;">Nombre Contacto:</label>
+                        </div>
+                        <div class="controls col-md-9">
+                                <input class="form-control vTextField" id="id_contact_name" maxlength="50" name="contact_name" placeholder="Nombre Contacto" title="" type="text">
+                        </div>
+                    </div>
+            </div></div>
+        
+            <div class="row"><div class="control-group  field-contact_phone">
+                    <div class="col-md-12 form-group ">
+                        <div class="control-label col-md-3">
+                            <label for="id_contact_phone" style="color:#999;">Teléfono Contacto:</label>
+                        </div>
+                        <div class="controls col-md-9">
+                                <input class="form-control vTextField" id="id_contact_phone" maxlength="50" name="contact_phone" placeholder="Telefono Contacto" title="" type="text">
+                        </div>
+                    </div>
+            </div></div>
+        
+            <div class="row"><div class="control-group  field-blood">
+                    <div class="col-md-12 form-group ">
+                        <div class="control-label col-md-3">
+                            <label for="id_blood" style="color:#999;">Tipo Sangre:</label>
+                        </div>
+                        <div class="controls col-md-9">
+                                <input class="form-control vTextField" id="id_blood" maxlength="7" name="blood" placeholder="Tipo Sangre" title="" type="text">
+                        </div>
+                    </div>
+            </div></div>
+        
+            <div class="row"><div class="control-group  field-city">
+                    <div class="col-md-12 form-group ">
+                        <div class="control-label col-md-3">
+                            <label for="id_city" style="color:#999;">Ciudad:</label>
+                        </div>
+                        <div class="controls col-md-9">
+                                <input class="form-control vTextField" id="id_city" maxlength="50" name="city" placeholder="Ciudad" title="" type="text">
+                        </div>
+                    </div>
+            </div></div>
+        
+            <div class="row"><div class="control-group  field-sex">
+                    <div class="col-md-12 form-group ">
+                        <div class="control-label col-md-3">
+                            <label class="required" for="id_sex" style="color:#999;">Sexo:</label>
+                        </div>
+                        <div class="controls col-md-9">
+                                <select class="form-control" id="id_sex" name="sex" required="required" title="">
+                                    <option value="M" selected="selected">Masculino</option>
+                                    <option value="F">Femenino</option>
+                                </select>
+                        </div>
+                    </div>
+            </div></div>
+
+            <div class="row"><div class="control-group  field-payment">
+                    <div class="col-md-12 form-group ">
+                        <div class="control-label col-md-3">
+                            <label class="required" for="id_payment">Pago:</label>
+                        </div>
+                        <div class="controls col-md-9 custom-file">
+                                <input type="file" class="custom-file-input" name="payment" id="id_payment" />
+                        </div>
+                    </div>
+            </div></div>
+        
+    </div>
+</fieldset>
+
+        
+        
+
+        
+
+        
+        
+        
+
+        
+
+        
+
+        <script type="text/javascript">
+            (function($) {
+                $(document).ready(function() {
+                    $('.add-another').click(function(e) {
+                        e.preventDefault();
+                        showAddAnotherPopup(this);
+                    });
+                    $('.related-lookup').click(function(e) {
+                        e.preventDefault();
+                        showRelatedObjectLookupPopup(this);
+                    });
+                
+                    $('form#cyclist_form :input:visible:enabled:first').focus()
+                
+                });
+            })(django.jQuery);
+        </script>
+        
+
+        
+        
+<script type="text/javascript">
+(function($) {
+    var field;
+
+
+})(django.jQuery);
+</script>
+
+
+        </div>
+    </div>
+
+    <div class="form-actions">
+        
+<div class="pull-left">
+    
+</div>
+<div class="pull-right">
+
+<input type="submit" value="Grabar y añadir otro" class="btn btn-default" name="_addanother">
+<input type="submit" value="Grabar y continuar editando" class="btn btn-default" name="_continue">
+<input type="submit" value="Grabar" class="btn btn-primary default" name="_save">
+</div>
+<div class="spacer"></div>
+
+    </div>
+</form>

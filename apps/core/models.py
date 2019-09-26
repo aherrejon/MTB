@@ -21,12 +21,14 @@ CYCLIST_CATEGORIES = (
 )
 
 SIZE_OPTIONS  = (
-    ('N', 'None'),
-    ('S', 'Small'),
-    ('M', 'Medium'),
-    ('L', 'Large'),
-    ('XL', 'Extra Large'),
-    ('XXL', 'Doble Extra Large'),
+    ('N', 'N'),
+    ('S', 'S'),
+    ('M', 'M'),
+    ('L', 'L'),
+    ('XL', 'XL'),
+    ('2XL', '2XL'),
+    ('3XL', '3XL'),
+    ('4XL', '4XL'),
 )
 
 PACKAGE_OPTIONS  = (
@@ -45,6 +47,22 @@ SUPPLY_OPTIONS  = (
 SUSCRIPTION_STATUS  = (
     ('A', 'Aceptado'),
     ('P', 'En Proceso'),
+)
+
+SEX_OPTIONS  = (
+    ('M', 'Male'),
+    ('F', 'Female'),
+)
+
+TYPE_PACKAGE_OPTIONS = (
+    ('1', 'Paquete 1'),
+    ('2', 'Paquete 2'),
+)
+
+DISTANCE_OPTIONS = (
+    ('35', '35'),
+    ('50', '50'),
+    ('65', '65'),
 )
 
 class Event(models.Model):
@@ -86,17 +104,19 @@ class Cyclist(models.Model):
     lastname = models.CharField('Apellido1', max_length=50, db_index=True)
     secondlastname = models.CharField('Apellido2', max_length=50, db_index=True, blank=True)
     email = models.EmailField('Email', db_index=True)
-    age = models.PositiveIntegerField('Edad', blank=True)
-    birthday = models.DateField('Fecha Nacimiento', blank=True) 
+    age = models.PositiveIntegerField('Edad', blank=True, null=True)
+    birthday = models.DateField('Fecha Nacimiento', blank=True, null=True) 
     created = models.DateField(auto_now_add=True)
-    phone = models.CharField('Telefono', max_length=50, blank=True)
+    phone = models.CharField('Telefono', max_length=50, blank=True, null=True)
     category = models. CharField('Clasificación', max_length=1, choices=CYCLIST_CATEGORIES, default='P', blank=True)
     nickname = models.CharField('Apodo', max_length=50, db_index=True, null=True, blank=True)
-    club = models.CharField('Club', max_length=50, db_index=True, blank=True)
-    emergency_phone = models.CharField('Telefono Emergencia', max_length=50, blank=True)
-    contact_name = models.CharField('Nombre Contacto', max_length=50, blank=True)
-    contact_phone = models.CharField('Telefono Contacto', max_length=50, blank=True)
-    blood = models.CharField('Tipo Sangre', max_length=7, default='', blank=True)
+    club = models.CharField('Club', max_length=50, db_index=True, blank=True, null=True)
+    emergency_phone = models.CharField('Telefono Emergencia', max_length=50, blank=True, null=True)
+    contact_name = models.CharField('Nombre Contacto', max_length=50, blank=True, null=True)
+    contact_phone = models.CharField('Telefono Contacto', max_length=50, blank=True, null=True)
+    blood = models.CharField('Tipo Sangre', max_length=7, default='', blank=True, null=True)
+    city = models.CharField('Ciudad', max_length=50, blank=True, null=True)
+    sex = models.CharField('Sexo', max_length=1, choices=SEX_OPTIONS, default='M')
 
     def __unicode__(self):
         if self.nickname:
@@ -116,6 +136,13 @@ class Suscription(models.Model):
     package = models.CharField('Paquete Entregado', max_length=1, choices=PACKAGE_OPTIONS, default='U')
     status = models.CharField('Estado Inscripcion', max_length=1, choices=SUSCRIPTION_STATUS, default='P')
     supply = models.CharField('Kilo de Ayuda', max_length=1, choices=SUPPLY_OPTIONS, default='N')
+    distance = models.CharField('Distancia', max_length=3, choices=DISTANCE_OPTIONS, default='50')    
+    package = models.CharField('Paquete', max_length=1, choices=TYPE_PACKAGE_OPTIONS, default='1')
+    paid_date = models.DateField('Fecha Deposito', blank=True, null=True)
+    account = models.CharField('Cuenta', max_length=50, blank=True, null=True)
+    comments = models.CharField('Observaciones', max_length=250, blank=True, null=True)
+    comments2 = models.CharField('Observaciones2', max_length=250, blank=True, null=True)
+    logo = models.BooleanField('Logo', default=False, blank=True)
 
     class Meta:
       unique_together = (('event', 'number'), ('event', 'cyclist'))

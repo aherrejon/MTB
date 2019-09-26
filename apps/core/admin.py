@@ -70,7 +70,8 @@ class SuscriptionAdmin(admin.ModelAdmin):
 
 class SuscriptionAdmin(admin.ModelAdmin):
 
-  list_display = ('event', 'cyclist', 'number', 'jersey', 'medal', 'ride', 'package', 'status', 'user')
+  #list_display = ('event', 'cyclist', 'number', 'jersey', 'medal', 'package', 'status', 'user')
+  list_display = ('number', 'cyclist', 'get_cyclist_city', 'get_cyclist_club',  'get_cyclist_sex', 'size', 'distance', 'package', 'paid_date', 'account', 'comments', 'logo', 'jersey', 'medal', 'status', 'user')
   list_filter = ('event', 'status', 'jersey', 'medal', 'package')
   #list_filter = ( ('event', RelatedDropdownFilter), ('status', DropdownFilter), ('jersey', DropdownFilter), ('medal', DropdownFilter), ('package', DropdownFilter), ('number', DropdownFilter))
   form = SuscriptionForm
@@ -78,6 +79,21 @@ class SuscriptionAdmin(admin.ModelAdmin):
   def save_model(self, request, obj, form, change):
   	obj.user = request.user
   	obj.save()
+
+  def get_cyclist_city(self, suscription):
+    return suscription.cyclist.city if suscription.cyclist is not None else '--'
+  get_cyclist_city.admin_order_field = 'city'
+  get_cyclist_city.short_description = 'Ciudad'
+
+  def get_cyclist_club(self, suscription):
+    return suscription.cyclist.club if suscription.cyclist is not None else '--'
+  get_cyclist_club.admin_order_field = 'club'
+  get_cyclist_club.short_description = 'Equipo'
+
+  def get_cyclist_sex(self, suscription):
+    return suscription.cyclist.sex if suscription.cyclist is not None else '--'
+  get_cyclist_sex.admin_order_field = 'sex'
+  get_cyclist_sex.short_description = 'Sexo'
 
   #def has_delete_permission(self, request, obj=None):
   #  return False
