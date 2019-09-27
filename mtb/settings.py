@@ -118,3 +118,19 @@ MESSAGE_TAGS = {
     messages.WARNING: 'alert-warning warning',
     messages.ERROR: 'alert-danger error'
 }
+
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_PASSWORD = 'Secreta123?.' 
+EMAIL_HOST_USER = 'pedalitos.team@gmail.com' 
+EMAIL_PORT = 587
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+REGISTER_EMAILS = ['alfredo.herrejon@gmail.com', 'pedalitos.team@gmail.com', 'jalexismtz.medina@gmail.com']
