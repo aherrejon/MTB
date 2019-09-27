@@ -143,6 +143,7 @@ class Suscription(models.Model):
     comments = models.CharField('Observaciones', max_length=250, blank=True, null=True)
     comments2 = models.CharField('Observaciones2', max_length=250, blank=True, null=True)
     logo = models.BooleanField('Logo', default=False, blank=True)
+    payment = models.FileField('Pago', upload_to='payments/', null=True, blank=True)
 
     class Meta:
       unique_together = (('event', 'number'), ('event', 'cyclist'))
