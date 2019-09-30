@@ -1,0 +1,102 @@
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="modalNewRegister">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Registro</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-content">
+        <div class="row d-flex justify-content-end p-4 m-4" id="modalRegister">
+            <div class="col-sm-12 col-md-12">
+                <form id="register-ciclyst" method="POST">
+                    {% comment %} <h5 class="h5 col-sm-12 form-group">1. Información personal.</h5> {% endcomment %}
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="customFileLang" lang="es">
+                                <label class="custom-file-label" for="customFileLang">Comprobante</label>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <div class="form-group">
+                                <label for="id_firstname" class="required">Nombre* </label>
+                                <input type="text" class="form-control" id="id_firstname" aria-describedby="nameHelp" name="firstname">
+                                {% comment %} <small id="nameHelp" class="form-text text-muted">Ingresa tu nombre.</small> {% endcomment %}
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <div class="form-group">
+                                <label for="id_lastname" class="required">Apellido Paterno* </label>
+                                <input type="text" class="form-control" id="id_lastname" aria-describedby="lastnameHelp" name="lastname">
+                                {% comment %} <small id="lastnameHelp" class="form-text text-muted">Ingresa tu apellido paterno.</small> {% endcomment %}
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <div class="form-group">
+                                <label for="id_secondlastname" class="required">Apellido Materno *</label>
+                                <input type="text" class="form-control" id="id_secondlastname" aria-describedby="secondlastnameHelp" name="secondlastname">
+                                {% comment %} <small id="secondlastnameHelp" class="form-text text-muted">Ingresa tu apellido materno.</small> {% endcomment %}
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <div class="form-group">
+                                <label for="id_age">Edad </label>
+                                <input type="number" class="form-control" id="id_age" aria-describedby="ageHelp" name="age">
+                                {% comment %} <small id="ageHelp" class="form-text text-muted">Ingresa tu edad.</small> {% endcomment %}
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <div class="form-group">
+                                <label class="required" for="id_club">Club* </label>
+                                <input type="text" class="form-control" id="id_club" aria-describedby="clubHelp" name="club">
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <div class="form-group">
+                                <label class="required" for="id_nickname">Apodo* </label>
+                                <input type="text" class="form-control" id="id_nickname" aria-describedby="nicknamePrepend" required name="nickname">
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="id_category" >Categoria</label>
+                            <select class="custom-select" id="id_category" required>
+                                <option selected>Selecciona tu categoria</option>
+                                <option value="P" >Principiante</option>
+                                <option value="I">Intermedia</option>
+                                <option value="A">Avanzada</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label class="required" for="id_email">Email* </label>
+                            <input type="email" class="form-control" id="id_email" aria-describedby="emailHelp" placeholder="nombre@pedalitos.com" name="email">
+                            <small id="emailHelp" class="form-text text-muted">A este correo enviaremos la confirmación de inscripción.</small>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label class="required" for="id_city">Ciudad* </label>
+                            <input type="text" class="form-control" id="id_city" aria-describedby="clubHelp" name="club">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label class="required" for="id_phone">Número Telefónico* </label>
+                            <input type="text" class="form-control" id="id_phone" aria-describedby="phoneHelp" name="phone">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label class="required" for="id_namecontact">Nombre Contacto* </label>
+                            <input type="text" class="form-control" id="id_namecontact" aria-describedby="namecontactHelp" name="namecontact">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label class="required" for="id_phonecontact">Telefono contacto* </label>
+                            <input type="text" class="form-control" id="id_phonecontact" aria-describedby="phonecontactHelp" name="phonecontact">
+                        </div>
+                        <div class="form-group col-sm-12 form-group col-md-3 col-lg-3">
+                            <label class="required" for="id_blood">Tipo Sangre* </label>
+                            <input type="text" class="form-control" id="id_blood" aria-describedby="bloodHelp" name="blood">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Registrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>

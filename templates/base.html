@@ -1,109 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    {% load staticfiles %}
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>MTB</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="{% static 'css/metisMenu/metisMenu.min.css' %}" rel="stylesheet">
-
-    <!-- Custom CSS -->
-
-    <!-- Custom Fonts -->
-    <link href="{% static 'css/font-awesome/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
-
-    <!-- DataTables CSS -->
-    <link href="{% static 'css/datatables/jquery.dataTables.min.css' %}" rel="stylesheet">
-    <link href="{% static 'css/datatables/buttons.dataTables.min.css' %}" rel="stylesheet">
-
-
-    <!-- Custom CSS -->
-    <link href="{% static 'css/dist/sb-admin-2.css' %}" rel="stylesheet">
-    <link href="{% static 'css/fixtures.css' %}" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-</head>
-
-<body>
-
+{% extends 'new_base.html' %}
+{% load staticfiles %}
+{% block css %}
+    {% comment %} <link href="{% static 'css/datatables/jquery.dataTables.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/datatables/dataTables4.min.css' %}" rel="stylesheet"> {% endcomment %}
+    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet">
+    
+    <style>
+        .bg-light{
+            background-color: #f8f9fab0 !important;
+            /* background-color: #ffee1873 !important; */
+        }
+        .dataTables_info{
+            white-space: normal !important;
+            text-align: center !important;
+        }
+        .pagination{
+            justify-content: center !important;
+        }
+        #page-wrapper{
+            border-radius: 16px;
+        }
+        #ciclystsTable > thead > tr {
+            background-color: #f8f9fa;
+        }
+        .modal-lg {
+            max-width: 1140px !important;
+        }
+        #modalRegister {
+            background-color: #ffee1894;
+            border-radius: 16px;
+            border: 2px solid black;
+        }
+    </style>
+{% endblock %}
+{% block content %}
     <div id="wrapper">
-
-        <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="{% url 'home' %}">MTB</a>
-            </div>
-            <!-- /.navbar-top-links -->
-
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                        <li>
-                            <a href="/admin/"><i class="fa fa-dashboard fa-fw"></i> Login</a>
-                        </li>
-                        <li>
-                            <a href="{% url 'home' %}"><i class="fa fa-table fa-fw"></i> Registros</a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.sidebar-collapse -->
-            </div>
-            <!-- /.navbar-static-side -->
-        </nav>
-        <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">6to Reto Los Miradores - Pedalitos Team</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
+        <div class="row d-flex justify-content-center p-4 m-4 bg-light" id="page-wrapper">
             <!-- /.row -->
-            <div class="row row-fix">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <!--div class="panel-heading">
-                            Tafetan 2017
-                        </div-->
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-Tafetan">
-                                <thead>
-                                    <tr>
-                                        <th>Numero</th>
-                                        <th>Ciclista</th>
-                                        <th>Club</th>
-                                        <th>Jersey</th>
-                                        <th>Ciudad</th>
-                                        <th>Distancia</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>
+            <div class="col-lg-10">
+                <h1 class="text-center h1">6to Reto Los Miradores - Pedalitos Team</h1>
+            </div>
+            <div class="col-md-10">
+                <div class="panel panel-default">
+                    <!--div class="panel-heading">
+                        Tafetan 2017
+                    </div-->
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <table width="100%" class="table table-striped table-bordered responsive" id="ciclystsTable">
+                            <thead>
+                                <tr>
+                                    <th data-priority="1">Número</th>
+                                    <th data-priority="1">Ciclista</th>
+                                    <th data-priority="2">Club</th>
+                                    <th data-priority="2">Jersey</th>
+                                    <th data-priority="2">Ciudad</th>
+                                    <th data-priority="1">Distancia</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
                             <!-- /.table-responsive -->
                             <!--div class="well">
                                 <h4>DataTables Usage Information</h4>
@@ -116,47 +74,30 @@
                     <!-- /.panel -->
                 </div>
                 <!-- /.col-lg-12 -->
-            </div>
+            
             <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->
 
     </div>
-    <!-- /#wrapper -->
+    {% include 'modals/register.html' %}
+{% endblock %}
 
-    <!-- jQuery -->
-
-
-
-    <!--script src="{% static 'js/jquery.min.js' %}"></script-->
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="{% static 'js/bootstrap/bootstrap.min.js' %}"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="{% static 'js/metisMenu/metisMenu.min.js' %}"></script>
-
-    <!-- Morris Charts JavaScript -->
-    <!--script src="{% static 'js/raphael/raphael.min.js' %}"></script>
-    <script src="{% static 'js/morris/morris.min.js' %}"></script>
-    <script src="{% static 'js/data/morris-data.js' %}"></script-->
-
-    <!-- Custom Theme JavaScript -->
-    <!--script src="{% static 'js/dist/sb-admin-2.js' %}"></script-->
-
-    <!-- DataTables JavaScript -->
-    <!--script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script-->
-    <script src="{% static 'js/datatables/jquery.dataTables.min.js' %}"></script>
-    <script src="{% static 'js/datatables/dataTables.bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/datatables/dataTables.buttons.min.js' %}"></script>
-    <script src="{% static 'js/datatables/buttons.print.min.js' %}"></script>
+{% block js%}
+    {% comment %} <script src="{% static 'js/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'js/datatables/dataTables.bootstrap4.min.js' %}"></script> {% endcomment %}
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="{% static 'js/tubular/jquery.tubular.1.0.js' %}"></script>
-    <!-- Custom Theme JavaScript -->
-
-
-
-    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    
+    
     <script>
     var token = '{{csrf_token}}';
     $(document).ready(function() {
@@ -177,17 +118,33 @@
           },
           "search": "Filtrar:",
         } 
-        $('#dataTables-Tafetan').dataTable({
-            //"iDisplayLength": 100,
-            //"iDisplayStart" : 0,
+
+        
+        $('#ciclystsTable').DataTable({
+            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            "responsive": true,
             "processing": true,
             "serverSide": true,
-            "dom": 'Bfrtip',
+            "pagingType": "simple_numbers",
+            "dom": 'Bfrtilp',
             "buttons": [
-            'print'
+                // 'copyHtml5',
+                'excelHtml5',
+                // 'csvHtml5',
+                'pdfHtml5'
             ],
             "language": language,
             "sAjaxSource": '/records/',
+            createdRow: function(row, data, index){
+                const cNumber  = data.number.toString();
+                $('td:eq(0)', row).html(cNumber.padStart(4, '0'));
+                if (data.jersey == 'Si'){
+                    $('td:eq(3)', row).html('<i class="fa fa-check" aria-hidden="true" value="Sí" style="color: green;"></i>');
+                }else if(data.jersey == 'No'){
+                    $('td:eq(3)', row).html('<i class="fa fa-times" aria-hidden="true" value="No" style="color: red;"></i>');
+                }
+                //
+            },
             fnServerData: function(sSource, aoData, fnCallback) {
               aoData.push( { "name": "csrfmiddlewaretoken","value": token});
               $.ajax( {
@@ -201,17 +158,28 @@
              });
             },
             "aoColumns": [
-                {"data": "number"},
+                {"data": "number", className: "text-center"},
                 {"data": "cyclist"},
                 {"data": "club"},
-                {"data": "jersey"},
+                {"data": "jersey", className: "text-center"},
                 {"data": "city"},
                 {"data": "distance"},
+            ],
+            'columnDefs': [
+                {"className": "dt-center", "targets": "_all"}
             ]
         });
+        $.fn.DataTable.ext.pager.numbers_length = 5;
+
+        $(document).on('click', '.create', function(e){
+            $('#modalNewRegister').modal('show');
+        });
+        $('#customFileLang').on('change',function(){
+            var fileName = $(this).val();
+            console.log(fileName);
+            //replace the "Choose a file" label
+            $(this).next('.custom-file-label').html(fileName);
+        })
     });
     </script>
-
-</body>
-
-</html>
+{% endblock %}

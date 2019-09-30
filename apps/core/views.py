@@ -43,6 +43,9 @@ def records(request):
         start = int(request.POST.get('iDisplayStart'))
         length = int(request.POST.get('iDisplayLength'))
         #list_suscriptions =  Suscription.objects.all()
+        
+        
+
         list_suscriptions =  Suscription.objects.filter(event__id=10, status='A')
         if ssearch:
           list_suscriptions = list_suscriptions.filter(
@@ -53,6 +56,8 @@ def records(request):
             Q(cyclist__secondlastname__icontains=ssearch) 
           )
         total = list_suscriptions.count()
+        if length < 0:
+          length = total
         list_suscriptions = list_suscriptions[start:start+length]
         list_result = []
         for suscription in list_suscriptions:
@@ -60,7 +65,8 @@ def records(request):
             'number': suscription.number,
             'cyclist': suscription.cyclist.__str__(),
             'club': suscription.cyclist.club,
-            'jersey': u'<i class="fa fa-check" aria-hidden="true" value="Sí"></i>' if suscription.jersey else u'<i class="fa fa-times" aria-hidden="true" value="No"></i>',
+            # 'jersey': u'<i class="fa fa-check" aria-hidden="true" value="Sí"></i>' if suscription.jersey else u'<i class="fa fa-times" aria-hidden="true" value="No"></i>',
+            'jersey': 'Si' if suscription.jersey else u'No',
             #'supply': '<i class="fa fa-check" aria-hidden="true"></i>' if suscription.supply != 'N' else '<i class="fa fa-times" aria-hidden="true"></i>',
             #'ride': '<i class="fa fa-check" aria-hidden="true"></i>' if suscription.ride else '<i class="fa fa-times" aria-hidden="true"></i>',
             'city': suscription.cyclist.city,
