@@ -34,6 +34,12 @@
             background-color: #fff;
             border-radius: 9px;
         }
+        #main-text {
+            border-bottom: 4px solid #ffee1894;
+        }
+        .question-separator {
+            border-bottom: 1px solid black;
+        }
     </style>
     {% block css %}{% endblock %}
     <title>MTB</title>
@@ -51,7 +57,7 @@
             <div class="navbar-nav">
                 <a href="{% url 'home' %}" class="nav-item nav-link active">Participantes</a>
                 <a href="javascript:;" class="nav-item nav-link create"><i class="fas fa-biking fa-spin" style="color:black;"></i>&nbsp;Registro</a>
-                <a href="#" class="nav-item nav-link">Información</a>
+                <a href="javascript:;" data-toggle="modal" data-target="#faqModal" class="nav-item nav-link">F.A.Q</a>
             </div>
             <div class="navbar-nav ml-auto">
                 <a href="{% url 'admin:login' %}" class="nav-item nav-link">Inicio sesión</a>

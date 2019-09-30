@@ -39,8 +39,8 @@
     <div id="wrapper">
         <div class="row d-flex justify-content-center p-4 m-4 bg-light" id="page-wrapper">
             <!-- /.row -->
-            <div class="col-lg-10">
-                <h1 class="text-center h1">6to Reto Los Miradores - Pedalitos Team</h1>
+            <div class="col-lg-10 text-center">
+                <h1 class="h1">6º Reto "Los Miradores" - Pedalitos Team 2019</h1>
             </div>
             <div class="col-md-10">
                 <div class="panel panel-default">
@@ -81,6 +81,7 @@
 
     </div>
     {% include 'modals/register.html' %}
+    {% include 'modals/faq.html' %}
 {% endblock %}
 
 {% block js%}
@@ -179,7 +180,12 @@
             console.log(fileName);
             //replace the "Choose a file" label
             $(this).next('.custom-file-label').html(fileName);
-        })
+        });
+        function toggleChevron(e) {
+            console.log('hola');
+        }
+        $('#question6').on('hidden.bs.collapse', toggleChevron);
+        $('#question6').on('shown.bs.collapse', toggleChevron);
     });
     </script>
 {% endblock %}
