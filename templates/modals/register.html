@@ -1,0 +1,142 @@
+        <script>
+            function submitRegistration() {
+                var result = grecaptcha.getResponse();
+                grecaptcha.getResponse()
+                if (result != "") {
+                  document.getElementById("register-ciclyst").submit();                    
+                }
+                return false
+            }
+        </script>
+        <div class="row d-flex justify-content-end p-4 m-4" id="modalRegister">
+            <div class="col-sm-12 col-md-12">
+                <form id="register-ciclyst" method="POST" enctype="multipart/form-data" action="/register/" onsubmit="event.preventDefault(); submitRegistration()">
+                    {% comment %} <h5 class="h5 col-sm-12 form-group">1. Información personal.</h5> {% endcomment %}
+                    {% csrf_token %}
+
+                    <div class="row">
+
+                            <div class="form-group col-md-3">
+                                <label for="id_paquete" ><strong>Paquete*</strong></label>
+                                <select class="custom-select" id="id_paquete" name="package" required>
+                                    <option value="1" >Paquete 1 (jersey, bandana, calcetas, número, pulsera, medalla)</option>
+                                    <option value="2">Paquete 2 (número, pulsera, medalla)</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="id_size" ><strong>Talla*</strong></label>
+                                <select class="custom-select" id="id_size" name="size" required>
+                                    <option value="S" >Chica</option>
+                                    <option value="M" >Mediana</option>
+                                    <option value="L" >Grande</option>
+                                    <option value="XL" >Extra Grande</option>
+                                    <option value="2XL" >2XL</option>
+                                    <option value="3XL" >3XL</option>
+                                    <option value="4XL" >4XL</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="id_distance" ><strong>Distancia*</strong></label>
+                                <select class="custom-select" id="id_distance" name="distance" required>
+                                    <option value="35" >35 km</option>
+                                    <option value="50" >50 km</option>
+                                    <option value="65" >65 km</option>                                    
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="id_size" ><strong>Pago*</strong></label>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="payment" id="customFileLang" required lang="es">
+                                    <label class="custom-file-label" for="customFileLang">Comprobante</label>
+                                </div>
+                            </div>
+                        
+                        <div class="form-group col-md-3">
+                            <label class="required" for="id_email"><strong>Email*</strong> </label>
+                            <input type="email" required class="form-control" id="id_email" aria-describedby="emailHelp" placeholder="nombre@pedalitos.com" name="email">
+                            <small id="emailHelp" class="form-text text-muted">Recibirás la confirmación de inscripción.</small>
+                        </div> 
+                        <div class="form-group col-md-3">
+                            <div class="form-group">
+                                <label for="id_firstname" class="required"><strong>Nombre*</strong> </label>
+                                <input type="text" class="form-control" id="id_firstname" aria-describedby="nameHelp" required name="firstname">
+                                {% comment %} <small id="nameHelp" class="form-text text-muted">Ingresa tu nombre.</small> {% endcomment %}
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <div class="form-group">
+                                <label for="id_lastname" class="required"><strong>Apellido Paterno*</strong></label>
+                                <input type="text" class="form-control" id="id_lastname" aria-describedby="lastnameHelp" required name="lastname">
+                                {% comment %} <small id="lastnameHelp" class="form-text text-muted">Ingresa tu apellido paterno.</small> {% endcomment %}
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <div class="form-group">
+                                <label for="id_secondlastname" class="required">Apellido Materno</label>
+                                <input type="text" class="form-control" id="id_secondlastname" aria-describedby="secondlastnameHelp" name="secondlastname">
+                                {% comment %} <small id="secondlastnameHelp" class="form-text text-muted">Ingresa tu apellido materno.</small> {% endcomment %}
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label class="required" for="id_phone"><strong>Teléfono*</strong> </label>
+                            <input type="text" class="form-control" id="id_phone" aria-describedby="phoneHelp" required name="phone">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <div class="form-group">
+                                <label class="required" for="id_club">Club </label>
+                                <input type="text" class="form-control" id="id_club" aria-describedby="clubHelp" name="club">
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <div class="form-group">
+                                <label class="required" for="id_nickname">Apodo </label>
+                                <input type="text" class="form-control" id="id_nickname" aria-describedby="nicknamePrepend" name="nickname">
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="id_category" >Categoria</label>
+                            <select class="custom-select" id="id_category" name="category" required>
+                                <option value="P" >Principiante</option>
+                                <option value="I">Intermedia</option>
+                                <option value="A">Avanzada</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <div class="form-group">
+                                <label for="id_age">Edad </label>
+                                <input type="number" class="form-control" id="id_age" aria-describedby="ageHelp" name="age">
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label class="required" for="id_city">Ciudad </label>
+                            <input type="text" class="form-control" id="id_city" aria-describedby="clubHelp" name="city">
+                        </div>
+                        {% comment %}
+                        <div class="form-group col-md-3">
+                            <label class="required" for="id_namecontact">Nombre Contacto </label>
+                            <input type="text" class="form-control" id="id_namecontact" aria-describedby="namecontactHelp" name="namecontact">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label class="required" for="id_phonecontact">Teléfono contacto </label>
+                            <input type="text" class="form-control" id="id_phonecontact" aria-describedby="phonecontactHelp" name="phonecontact">
+                        </div>
+                        {% endcomment %}                        
+                        <div class="form-group col-md-3">
+                            <label class="required" for="id_sex">Género </label>
+                            <select class="custom-select" id="id_sex" name="sex" required>
+                                <option value="M" >Masculino</option>
+                                <option value="F">Femenino</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label class="required" for="id_blood">Tipo Sangre </label>
+                            <input type="text" class="form-control" id="id_blood" aria-describedby="bloodHelp" name="blood">
+                        </div>
+                        <div class="g-recaptcha" data-sitekey="6LfRMrsUAAAAAGTzufPwh5vLosGhwKj8aiOOqfD7"></div>
+                    </div>
+                    <button class="btn btn-primary" >Registrar</button>
+                    <!--button class="g-recaptcha" data-sitekey="6LfRMrsUAAAAAGTzufPwh5vLosGhwKj8aiOOqfD7" data-callback="submitRegistration">Registrar</button-->
+                </form>
+            </div>
+        </div>
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>

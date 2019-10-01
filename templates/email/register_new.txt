@@ -2,12 +2,12 @@ Un nuevo Ciclista se ha registrado al 6to Reto Los Miradores
 
 Los datos del ciclista son:
 
-Nombre: {{fistname}}
-Apellido: {{lastname}}
-Suscripción: {{number}}
-Ciudad: {{city}}
-Club: {{club}}
-Paquete: {{package}}
+Nombre: {{fistname|safe|escape}}
+Apellido: {{lastname|safe|escape}}
+Suscripción: {{number|safe|escape}}
+Ciudad: {{city|safe|escape}}
+Club: {{club|safe|escape}}
+Paquete: {{package|safe|escape}}
 
 Saludos, 
 Pedalitos Team

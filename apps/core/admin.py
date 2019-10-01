@@ -1,7 +1,6 @@
 #from __future__ import unicode_literals
 from django.contrib import admin
 
-
 # Register your models here.
 from django.contrib import admin
 from .models import *
@@ -67,12 +66,36 @@ class SuscriptionAdmin(admin.ModelAdmin):
   	obj.save()
 """
 
+class PendingSucription(admin.SimpleListFilter):
+  title = u'Estado Asignacion' # a label for our filter
+  parameter_name = 'pendientes' # you can put anything here
+
+  def lookups(self, request, model_admin):
+    # This is where you create filter options; we have two:
+    return [
+        ('pending', 'Pendientes'),
+        ('available', 'Disponibles'),
+        ('assigned', 'Asignadas'),
+        ('all', 'Todas'),
+    ] 
+
+  def queryset(self, request, queryset):
+    if self.value() == 'pending':
+      return queryset.filter(cyclist__isnull=False, status__exact='P')
+    if self.value() == 'available':
+      return queryset.filter(cyclist__isnull=True)
+    if self.value() == 'assigned':
+      return queryset.filter(cyclist__isnull=False, status__exact='A')      
+    if self.value() == 'all':
+      return queryset.all()
+
+
 
 class SuscriptionAdmin(admin.ModelAdmin):
 
-  #list_display = ('event', 'cyclist', 'number', 'jersey', 'medal', 'package', 'status', 'user')
-  list_display = ('number', 'cyclist', 'get_cyclist_city', 'get_cyclist_club',  'get_cyclist_sex', 'size', 'distance', 'package', 'paid_date', 'account', 'comments', 'logo', 'jersey', 'medal', 'status', 'user')
-  list_filter = ('event', 'status', 'jersey', 'medal', 'package')
+  #list_display = ('number', 'cyclist', 'get_cyclist_city', 'get_cyclist_club',  'get_cyclist_sex', 'size', 'distance', 'package_type', 'paid_date', 'account', 'comments', 'logo', 'jersey', 'medal', 'status', 'user')
+  list_display = ('number', 'cyclist', 'get_cyclist_city', 'get_cyclist_club',  'get_cyclist_sex', 'size', 'distance', 'package_type', 'paid_date', 'account', 'comments', 'jersey', 'status', 'user')
+  list_filter = (PendingSucription, 'event',  'status', 'jersey', 'medal', 'package_type')
   #list_filter = ( ('event', RelatedDropdownFilter), ('status', DropdownFilter), ('jersey', DropdownFilter), ('medal', DropdownFilter), ('package', DropdownFilter), ('number', DropdownFilter))
   form = SuscriptionForm
 
