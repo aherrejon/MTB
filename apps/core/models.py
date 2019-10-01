@@ -5,6 +5,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import Max
+import os
 
 # Create your models here.
 
@@ -124,8 +125,14 @@ class Cyclist(models.Model):
         return u'{f} {l} {s}'.format(f=self.firstname, l=self.lastname, s=self.secondlastname)
 
 
+def suscription_payment(instance, filename):
+  upload_to = 'payments'
+  filename = '{}__{}'.format(instance.number, filename)
+  return os.path.join(upload_to, filename)
+
+
 class Suscription(models.Model):
-    user= models.ForeignKey(User, null=True, blank=True)
+    user = models.ForeignKey(User, null=True, blank=True)
     event = models.ForeignKey(Event, verbose_name='Evento')
     cyclist = models.ForeignKey(Cyclist, verbose_name='Ciclista', null=True)
     number = models.PositiveIntegerField('Numero')
@@ -133,17 +140,17 @@ class Suscription(models.Model):
     medal = models.BooleanField('Medalla', default=False)
     ride = models.BooleanField('Transporte', default=False)    
     size = models.CharField('Talla', max_length=3, choices=SIZE_OPTIONS, default='N')
-    package = models.CharField('Paquete Entregado', max_length=1, choices=PACKAGE_OPTIONS, default='U')
+    package_status = models.CharField('Paquete Entregado', max_length=1, choices=PACKAGE_OPTIONS, default='U')
     status = models.CharField('Estado Inscripcion', max_length=1, choices=SUSCRIPTION_STATUS, default='P')
     supply = models.CharField('Kilo de Ayuda', max_length=1, choices=SUPPLY_OPTIONS, default='N')
     distance = models.CharField('Distancia', max_length=3, choices=DISTANCE_OPTIONS, default='50')    
-    package = models.CharField('Paquete', max_length=1, choices=TYPE_PACKAGE_OPTIONS, default='1')
+    package_type = models.CharField('Paquete', max_length=1, choices=TYPE_PACKAGE_OPTIONS, default='1')
     paid_date = models.DateField('Fecha Deposito', blank=True, null=True)
     account = models.CharField('Cuenta', max_length=50, blank=True, null=True)
     comments = models.CharField('Observaciones', max_length=250, blank=True, null=True)
     comments2 = models.CharField('Observaciones2', max_length=250, blank=True, null=True)
     logo = models.BooleanField('Logo', default=False, blank=True)
-    payment = models.FileField('Pago', upload_to='payments/', null=True, blank=True)
+    payment = models.FileField('Pago', upload_to=suscription_payment, null=True, blank=True)
 
     class Meta:
       unique_together = (('event', 'number'), ('event', 'cyclist'))

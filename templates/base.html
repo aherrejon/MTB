@@ -29,7 +29,7 @@
             max-width: 1140px !important;
         }
         #modalRegister {
-            background-color: #ffee1894;
+            background-color: #ffee1824;
             border-radius: 16px;
             border: 2px solid black;
         }
@@ -80,7 +80,21 @@
         <!-- /#page-wrapper -->
 
     </div>
-    {% include 'modals/register.html' %}
+
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="modalNewRegister">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">¡Inscríbete!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% include 'modals/register.html' %}
+        </div>
+      </div>
+    </div>
+
     {% include 'modals/faq.html' %}
 {% endblock %}
 
@@ -102,12 +116,10 @@
     <script>
     var token = '{{csrf_token}}';
     $(document).ready(function() {
-        $('#wrapper').tubular({
-          //videoId: 'EMnqOaVm8AU' // 2017
-          //videoId: 'j4GejXLqP08' // 2018
-          videoId: '6d9dN5dX7SM', // 2018
+        /*$('#wrapper').tubular({
+          //videoId: '6d9dN5dX7SM', // 2018
           start: 10
-        });
+        });*/
         language = {
           "lengthMenu": "Mostrar _MENU_ entradas",
           "zeroRecords": "Lo siento no se encontraron resultados",

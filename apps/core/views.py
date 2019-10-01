@@ -15,6 +15,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
+from pdb import set_trace
 
 
 class CyclistAutocomplete(autocomplete.Select2QuerySetView):
@@ -89,13 +90,14 @@ def records(request):
 
 
 def register(request):
+
   if request.method == 'POST':
     if request.FILES['payment']:
       firstname = request.POST.get('firstname')
       lastname = request.POST.get('lastname')
       secondlastname = request.POST.get('secondlastname')
       email = request.POST.get('email')
-      age = request.POST.get('age')
+      age = request.POST.get('age', None)
       phone = request.POST.get('phone')
       category = request.POST.get('category')
       nickname = request.POST.get('nickname')
@@ -106,13 +108,16 @@ def register(request):
       blood = request.POST.get('blood')
       city = request.POST.get('city')
       sex = request.POST.get('sex')
+      package = request.POST.get('package')
+      size = request.POST.get('size')
+      distance = request.POST.get('distance')
 
       cyclist, created = Cyclist.objects.get_or_create(email=email)
 
       cyclist.firstname = firstname
       cyclist.lastname = lastname
       cyclist.secondlastname = secondlastname
-      cyclist.age = age
+      cyclist.age = age if age != '' else None
       #cyclist.birthday = birthday
       cyclist.phone = phone
       cyclist.category = category
@@ -126,29 +131,50 @@ def register(request):
       cyclist.sex = sex
       cyclist.save()
       
-      number = Suscription.objects.filter(event_id=10, cyclist__isnull=True).aggregate(Min('number'))
-      suscription = Suscription.objects.get(event_id=10, number=number)
-      suscription.cyclist = cyclist
-      suscription.save()
+      #set_trace()
+
+      already_suscribed = Suscription.objects.filter(event_id=10, cyclist=cyclist).exists()
+      if already_suscribed:
+        return render(request, 'register_already.html')  
+
+      number_dict = Suscription.objects.filter(event_id=10, cyclist__isnull=True).aggregate(Min('number'))
+      number = number_dict['number__min']
+      number = 309
 
       payment_file = request.FILES['payment']
       payment_name = '%s__%s' % (number, payment_file.name)
-      fs = FileSystemStorage()
-      filename = fs.save('', payment_file)  
+      #payment_file.name = payment_name
+      #fs = FileSystemStorage()
+      #filename = fs.save(payment_name, payment_file)  
       
-      msg_plain = render_to_string('templates/email/register_thanks.txt', {'firstname': firstname, 'lastname': lastname})
-      msg_html = render_to_string('templates/email/register_thanks.html', {'firstname': firstname, 'lastname': lastname})
+      suscription = Suscription.objects.get(event_id=10, number=number)
+      suscription.cyclist = cyclist
+
+      suscription.jersey = True if package == '1' else False
+      suscription.medal = True
+      suscription.ride = False
+      suscription.size = size
+      suscription.package_type = package
+      suscription.distance = distance
+      suscription.payment = payment_file
+      suscription.save()      
+      
+      msg_plain = render_to_string('email/register_thanks.txt', {'firstname': firstname, 'lastname': lastname})
+      msg_html = render_to_string('email/register_thanks.html', {'firstname': firstname, 'lastname': lastname})
       send_mail('Bienvenido 6toReto Los Miradores', msg_plain, settings.EMAIL_HOST_USER, [email], fail_silently=False, html_message=msg_html)
 
-      msg_plain = render_to_string('templates/email/register_new.txt', {'fistname': fistname, 'lastname':lastname,  'number':number,  'city':city, 'club':club, 'package':package})
-      msg_html = render_to_string('templates/email/register_new.html', {'fistname': fistname, 'lastname':lastname,  'number':number,  'city':city, 'club':club, 'package':package})
-      email = EmailMessage(
+      msg_plain = render_to_string('email/register_new.txt', {'fistname': firstname, 'lastname': lastname,  'number': number,  'city': city, 'club': club, 'package': package})
+      msg_html = render_to_string('email/register_new.html', {'fistname': firstname, 'lastname': lastname,  'number': number,  'city': city, 'club': club, 'package': package})
+      message = EmailMessage(
           'Nuevo Registro al 6to Reto los Miradores',
           msg_html,
           settings.EMAIL_HOST_USER,
           settings.REGISTER_EMAILS,
       )
-      message.attach(payment_name, payment_file)
+      message.content_subtype = "html"
+      payment_file.seek(0)
+      message.attach(payment_name, payment_file.read(), payment_file.content_type)
+      message.send()
       #send_mail('Nuevo Registro al 6to Reto los Miradores', msg_plain, settings.EMAIL_HOST_USER, settings.REGISTER_EMAILS, fail_silently=False, html_message=msg_html)
     
       return render(request, 'register_thanks.html')  

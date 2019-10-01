@@ -134,3 +134,7 @@ EMAIL_PORT = 587
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 REGISTER_EMAILS = ['alfredo.herrejon@gmail.com', 'pedalitos.team@gmail.com', 'jalexismtz.medina@gmail.com']
+
+
+GRECAPTCHA_SITE = '6LfRMrsUAAAAAGTzufPwh5vLosGhwKj8aiOOqfD7'
+GRECAPTCHA_KEY = '6LfRMrsUAAAAAN6BxUAvsXvsl1ge-oGp5MQ4lWXm'
