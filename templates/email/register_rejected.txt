@@ -1,0 +1,8 @@
+Registro Rechazado 6to Reto "Los Miradores" Pedalitos Team
+
+Hola {{firstname}} {{lastname}},
+
+Lo sentimos, tu registro ha sido rechazado, si necesitas una aclaración por favor comunicarte en nuestro Facebook o al número 4432079655. 
+
+Saludos, 
+Pedalitos Team

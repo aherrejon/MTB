@@ -5,6 +5,10 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import Max
+from django.template.loader import render_to_string
+from django.core.mail import send_mail
+from pdb import set_trace
+from django.conf import settings
 import os
 
 # Create your models here.
@@ -48,6 +52,7 @@ SUPPLY_OPTIONS  = (
 SUSCRIPTION_STATUS  = (
     ('A', 'Aceptado'),
     ('P', 'En Proceso'),
+    ('R', 'Rechazada'),
 )
 
 SEX_OPTIONS  = (
@@ -159,12 +164,29 @@ class Suscription(models.Model):
         return u'{e} {c} {n}'.format(e=self.event, c=self.cyclist, n=self.number)
 
     def save(self, *args, **kwargs):
+      set_trace()
       new = False
       if self.pk is None and self.number is None:
         new = True
         max_num = Suscription.objects.filter(event=self.event).aggregate(max=Max('number'))
         self.number  = max_num['max'] + 1 if max_num['max'] is not None else 1
+
+      # Verify if the suscription has been approved or rejected
+      if not new:
+        obj = Suscription.objects.get(pk=self.pk)
+        if obj.status != self.status:
+          if self.status == 'A':
+            msg_plain = render_to_string('email/register_approved.txt', {'firstname': self.cyclist.firstname, 'lastname': self.cyclist.lastname, 'number': self.number})
+            msg_html = render_to_string('email/register_approved.html', {'firstname': self.cyclist.firstname, 'lastname': self.cyclist.lastname, 'number': self.number})
+            send_mail('Registro Aprobado - 6toReto Los Miradores', msg_plain, settings.EMAIL_HOST_USER, [self.cyclist.email], fail_silently=False, html_message=msg_html)
+          elif self.status == 'R':
+            msg_plain = render_to_string('email/register_rejected.txt', {'firstname': self.cyclist.firstname, 'lastname': self.cyclist.lastname})
+            msg_html = render_to_string('email/register_rejected.html', {'firstname': self.cyclist.firstname, 'lastname': self.cyclist.lastname})
+            send_mail('Registro Rechazado - Los Miradores', msg_plain, settings.EMAIL_HOST_USER, [self.cyclist.email], fail_silently=False, html_message=msg_html)
+            self.delete()
+
       super(Suscription, self).save(*args, **kwargs)        
+      
       if new:
         if self.jersey:
           self.event.left_jerseys -= 1

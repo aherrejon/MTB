@@ -1,0 +1,13 @@
+Registro Aprobado 6to Reto "Los Miradores" Pedalitos Team
+
+Hola {{firstname}} {{lastname}},
+Tu registro ha sido aprobado, tu número de partipante es: {{number}}. 
+
+Te esperamos en:
+
+Dirección: Jardín EGP, Av. Thomas Jefferson s/n Ejido Santa María, mejor conocido como "Altozano", Morelia, Michoacán
+Recepción: A partir de las 7:00am
+Hora de Salida: 8:00 am, arrancaremos puntuales.
+
+Saludos, 
+Pedalitos Team
