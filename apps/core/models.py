@@ -164,7 +164,7 @@ class Suscription(models.Model):
         return u'{e} {c} {n}'.format(e=self.event, c=self.cyclist, n=self.number)
 
     def save(self, *args, **kwargs):
-      set_trace()
+      #set_trace()
       new = False
       if self.pk is None and self.number is None:
         new = True
@@ -209,8 +209,8 @@ class Suscription(models.Model):
       self.medal = False
       self.ride = False
       self.size = 'N'      
-      self.package = 'U'
-      self.status = 'N'
+      self.package_type = '1'
+      self.status = 'P'
       self.supply = 'N'
       self.save()
 

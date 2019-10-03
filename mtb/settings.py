@@ -133,8 +133,10 @@ EMAIL_HOST_USER = 'pedalitos.team@gmail.com'
 EMAIL_PORT = 587
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
-REGISTER_EMAILS = ['alfredo.herrejon@gmail.com', 'pedalitos.team@gmail.com', 'jalexismtz.medina@gmail.com']
+REGISTER_EMAILS = ['alfredo.herrejon@gmail.com', 'pedalitos.team@gmail.com', 'aliatwork@hotmail.com']
 
 
 GRECAPTCHA_SITE = '6LfRMrsUAAAAAGTzufPwh5vLosGhwKj8aiOOqfD7'
 GRECAPTCHA_KEY = '6LfRMrsUAAAAAN6BxUAvsXvsl1ge-oGp5MQ4lWXm'
+
+TIME_ZONE = 'America/Mexico_City'
