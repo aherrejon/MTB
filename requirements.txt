@@ -1,4 +1,4 @@
-Django==2.2.24
+Django==2.2.27
 django-admin-bootstrapped==2.5.7
 django-admin-bootstrapped-plus==0.1.1.2
 django-autocomplete-light==3.2.9
